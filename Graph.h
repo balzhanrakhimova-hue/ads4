@@ -1,4 +1,3 @@
-
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -17,12 +16,13 @@ private:
     vector<vector<int>> adj;
     int edges;
 
+    void dfsRecUtil(int v, vector<bool>& visited, vector<int>& order) const;
+    bool cycleUtil(int v, vector<int>& color) const;
+
 public:
     Graph(int n, bool directed);
 
     void addEdge(int u, int v);
-    void removeEdge(int u, int v);
-
     vector<int> neighbors(int u) const;
 
     int V() const;
@@ -30,6 +30,7 @@ public:
 
     vector<vector<int>> adjacencyMatrix() const;
 
+    // BFS
     void BFS(int start,
              vector<int>& order,
              vector<int>& dist,
@@ -37,14 +38,13 @@ public:
 
     vector<int> shortestPathUnweighted(int s, int t) const;
 
+    // DFS
     void DFS_recursive(int start, vector<int>& order) const;
     void DFS_iterative(int start, vector<int>& order) const;
 
+    // Part C requirements
+    vector<vector<int>> connectedComponents() const;
     bool hasCycleDirected() const;
-
-private:
-    void dfsRecUtil(int v, vector<bool>& visited, vector<int>& order) const;
-    bool cycleUtil(int v, vector<int>& color) const;
 };
 
 #endif
