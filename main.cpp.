@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Graph {
+    int V;
+    bool directed;
+    vector<vector<int>> adj;
+
+public:
+    Graph(int V, bool directed) : V(V), directed(directed) {
+        adj.resize(V);
+    }
+
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        if (!directed) adj[v].push_back(u);
+    }
+
+    vector<int> neighbors(int u) {
+        return adj[u];
+    }
+
+    int vertices() {
+        return V;
+    }
+};
+
+int main() {
+    cout << "Graph initialized\n";
+    return 0;
+}
